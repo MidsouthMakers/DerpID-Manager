@@ -75,7 +75,7 @@ Route::post('login', function()
         //header('Location: /user.php');
     } else {
         //login failed
-        echo 'Invalide Login';
+        echo 'Invalid Login';
         //header('Location: /login.php?msg=' . $msg);
     }
     //Login Successful - Normal User - Proceed to /user

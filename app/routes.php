@@ -37,6 +37,47 @@ Route::post('login', function()
     $user = DB::table('users')->where('key', $data['key'])->first();
 
     var_dump($user);
+    /* this stuff needs to move to a controller */
+    function SecureThis($pin){
+        $salt = '$1$' . substr(microtime(),0,8);
+        return crypt($pin, $salt);
+    }
+    function CheckThis($pin,$salt){
+        $this_salt = '$1$' . $salt;
+        return crypt($pin,$this_salt);
+    }
+    function ParseHash($hash){
+        $hash_parts = explode('$',$hash);
+        return $hash_parts;
+    }
+    /* this stuff needs to move to a controller */
+    $stored = explode('$',$user->hash);
+    $supplied_check = CheckThis($data['pin'], $stored['2']);
+    $supplied = explode('$',$supplied_check);
+    $user_hash = $stored['3'];
+    $supplied_hash = $supplied['3'];
+
+    if((($supplied_hash == $user_hash) && $user->isAdmin)){
+        //user authenticated
+        setcookie("logged_in", 1, time()+3600);  /* expires in 1 hour */
+        $_SESSION['logged_in'] = 1;
+        $_SESSION['ircName'] = $user->ircName;
+        $_SESSION['key'] = $user->key;
+        echo 'User Authenticated and is an Admin';
+        //header('Location: /admin.php');
+    } elseif((($supplied_hash == $user_hash) && !$user->isAdmin)){
+        //user authenticated - but not admin
+        setcookie("logged_in", 1, time()+3600);  /* expires in 1 hour */
+        $_SESSION['logged_in'] = 1;
+        $_SESSION['ircName'] = $user->ircName;
+        $_SESSION['key'] = $user->key;
+        echo 'User Authenticated and is a User';
+        //header('Location: /user.php');
+    } else {
+        //login failed
+        echo 'Invalide Login';
+        //header('Location: /login.php?msg=' . $msg);
+    }
     //Login Successful - Normal User - Proceed to /user
 
 

@@ -13,9 +13,20 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('loginform');
 });
-Route::get('users', function()
+Route::get('login', function()
 {
-    return 'Users!';
+    // Create a controller to handle login check
+
+    //Login Successful - Normal User - Proceed to /user
+
+
+    //Login Successful - Admin User - Proceed to /admin
+
+
+
+
+    //return View::make('loginform');
 });
+

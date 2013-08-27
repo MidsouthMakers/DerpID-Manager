@@ -47,6 +47,8 @@
 <div class="welcome">
     <h1>User</h1>
     <p>You must be a user.</p>
+    <?php var_dump($_SESSION); ?>
 </div>
 </body>
 </html>
+

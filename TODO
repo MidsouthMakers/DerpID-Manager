@@ -1,0 +1,18 @@
+## TODO
+
+Features
+==
+
+* Add ability for users to update info
+* Add ability for admins to view users
+* Add ability for admins to edit users
+* Add ability for admins to create users
+* Add log parsing / reading
+* Add ability for admins to view logs
+
+
+Best Practices
+==
+
+* Refactor auth out of router into controller
+

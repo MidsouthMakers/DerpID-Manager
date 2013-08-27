@@ -47,6 +47,7 @@
 <div class="welcome">
     <h1>Admin</h1>
     <p>You must be an Admin</p>
+    <?php var_dump($_SESSION); ?>
 </div>
 </body>
 </html>

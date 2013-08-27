@@ -19,6 +19,14 @@ Route::get('login', function()
 {
     return View::make('loginform');
 });
+Route::get('admin', function()
+{
+    return View::make('admin');
+});
+Route::get('user', function()
+{
+    return View::make('user');
+});
 Route::post('login', function()
 {
     //Handle input
@@ -64,7 +72,7 @@ Route::post('login', function()
         $_SESSION['ircName'] = $user->ircName;
         $_SESSION['key'] = $user->key;
         echo 'User Authenticated and is an Admin';
-        //header('Location: /admin.php');
+        return Redirect::to('admin');
     } elseif((($supplied_hash == $user_hash) && !$user->isAdmin)){
         //user authenticated - but not admin
         setcookie("logged_in", 1, time()+3600);  /* expires in 1 hour */
@@ -72,13 +80,14 @@ Route::post('login', function()
         $_SESSION['ircName'] = $user->ircName;
         $_SESSION['key'] = $user->key;
         echo 'User Authenticated and is a User';
-        //header('Location: /user.php');
+        //Login Successful - Normal User - Proceed to /user
+        return Redirect::to('user');
     } else {
         //login failed
         echo 'Invalid Login';
-        //header('Location: /login.php?msg=' . $msg);
+        return Redirect::to('login');
     }
-    //Login Successful - Normal User - Proceed to /user
+
 
 
     //Login Successful - Admin User - Proceed to /admin

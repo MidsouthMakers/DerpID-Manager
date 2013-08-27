@@ -17,8 +17,26 @@ Route::get('/', function()
 });
 Route::get('login', function()
 {
-    // Create a controller to handle login check
+    return View::make('loginform');
+});
+Route::post('login', function()
+{
+    //Handle input
+    $data = Input::all();
+    $rules = array(
+        'key' => 'integer',
+        'pin' => 'integer'
+    );
+    // Create a new validator instance.
+    $validator = Validator::make($data, $rules);
+    if ($validator->fails()) {
+        return Redirect::to('/');
+    }
+    //Data is valid Proceed to authenticate the user
+    //Get this user
+    $user = DB::table('users')->where('key', $data['key'])->first();
 
+    var_dump($user);
     //Login Successful - Normal User - Proceed to /user
 
 

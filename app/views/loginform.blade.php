@@ -48,7 +48,7 @@
 <div class="welcome">
     <h1>Welcome</h1>
     <p>please log in.</p>
-    {{ Form::open(array('url' => 'welcome')) }}
+    {{ Form::open(array('url' => 'login')) }}
         {{ Form::label('key', 'Key: ') }}
         {{ Form::text('key', '') }}
     <br />

@@ -1,9 +1,9 @@
-## RFID-PHP-CRUD
+## DerpID-Manager
 
-An exercise in real world application
+A web based RFID System Management Application
 ==
 
-The use case is a PHP application to manage a SQLite database containing users to an RFID system.
+Use Case: To manage a SQLite database containing users to an RFID system and expand features/functionality.
 
 Contributing
 ==

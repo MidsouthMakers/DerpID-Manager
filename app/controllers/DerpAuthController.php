@@ -77,7 +77,7 @@ class DerpAuthController extends BaseController {
     {
         $key = Session::get('key');
         $user = User::getUserByKey($key);
-        if ($user->isAdmin) {
+        if ($user && $user->isAdmin) {
             return true;
         } else {
             return false;

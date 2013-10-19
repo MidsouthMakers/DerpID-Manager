@@ -20,23 +20,35 @@ Route::get('login', function()
     return View::make('loginform');
 });
 
-Route::filter('adminAuth', function()
+Route::filter('Auth', function()
 {
-    if (DerpAuthController::isLoggedIn() != 1 || DerpAuthController::isAdmin() != 1) {
+    if (DerpAuthController::isLoggedIn() != 1) {
         return Redirect::to('login');
     }
 });
 
-Route::group(['before' => 'adminAuth'], function() {
-    Route::resource('admin', 'AdminController');
-});
-
-Route::get('user', function()
+Route::filter('AuthAdmin', function()
 {
-    if (DerpAuthController::isLoggedIn()) {
-        return View::make('user');
+    if (DerpAuthController::isAdmin() != 1) {
+        return Redirect::to('login');
     }
 });
+
+Route::group(['before' => 'Auth'], function() {
+
+    Route::resource('user', 'user\UserController');
+
+    Route::group(['before' => 'AuthAdmin'], function() {
+        Route::resource('admin', 'AdminController');
+    });
+});
+
+//Route::get('user', function()
+//{
+//    if (DerpAuthController::isLoggedIn()) {
+//        return View::make('user');
+//    }
+//});
 
 Route::post('login', 'DerpAuthController@login');
 Route::get('logout', 'DerpAuthController@logout');

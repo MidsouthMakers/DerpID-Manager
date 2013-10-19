@@ -67,9 +67,9 @@ class DerpAuthController extends BaseController {
     public static function isLoggedIn()
     {
         if (Session::get('logged_in') == 1) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 
@@ -77,10 +77,10 @@ class DerpAuthController extends BaseController {
     {
         $key = Session::get('key');
         $user = User::getUserByKey($key);
-        if ($user->isAdmin) {
-            return 1;
+        if ($user && $user->isAdmin) {
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 

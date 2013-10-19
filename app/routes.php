@@ -35,13 +35,14 @@ Route::group(['before' => 'adminAuth'], function() {
 
 });
 
+/*
 Route::get('user', function()
 {
     if (DerpAuthController::isLoggedIn()) {
         return View::make('user');
     }
 });
-
+*/
 Route::post('login', 'DerpAuthController@login');
 Route::get('logout', 'DerpAuthController@logout');
 

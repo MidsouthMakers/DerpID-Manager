@@ -4,7 +4,7 @@ namespace Admin;
 use View;
 use BaseController;
 
-class AdminController extends BaseController {
+class UserController extends BaseController {
 
     /*
      * Handle basic admin functionality
@@ -12,7 +12,7 @@ class AdminController extends BaseController {
 
     public function index()
     {
-        return View::make('admin/admin');
+        return View::make('admin/user');
     }
 
     public function create()

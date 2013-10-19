@@ -28,7 +28,9 @@ Route::filter('adminAuth', function()
 });
 
 Route::group(['before' => 'adminAuth'], function() {
+    Route::resource('admin/user', 'admin\UserController');
     Route::resource('admin', 'admin\AdminController');
+
 });
 
 Route::get('user', function()

@@ -5,25 +5,31 @@ class DerpAuthController extends BaseController {
      * Handle user authentication
      */
 
-    public function SecureThis($pin)
+    public static function SecureThis($pin)
     {
         $salt = '$1$' . substr(microtime(),0,8);
         return crypt($pin, $salt);
     }
 
-    public function CheckThis($pin,$salt)
+    public static  function CheckThis($pin,$salt)
     {
         $this_salt = '$1$' . $salt;
         return crypt($pin,$this_salt);
     }
 
-    public function ParseHash($hash)
+    public static  function ParseHash($hash)
     {
         $hash_parts = explode('$',$hash);
         return $hash_parts;
     }
 
-    public function login()
+    public static function CleanKey($key){
+        $int_key = intval($key);
+        $clean_key = $int_key & 0x00FFFFFF;
+        return $clean_key;
+    }
+
+    public static  function login()
     {
 
         // Get and validate input

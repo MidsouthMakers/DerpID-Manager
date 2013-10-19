@@ -2,6 +2,9 @@
 namespace Admin;
 
 use View;
+use Input;
+use Validator;
+use Redirect;
 use BaseController;
 
 class UserController extends BaseController {
@@ -13,11 +16,6 @@ class UserController extends BaseController {
     public function index()
     {
         return View::make('admin/user');
-    }
-
-    public function add()
-    {
-        return View::make('admin/user-add');
     }
 
     public function CleanKey($key)
@@ -40,8 +38,39 @@ class UserController extends BaseController {
         }
     }
 
-    public function Create($data)
+    public function create()
     {
+        return View::make('admin/user-add');
+    }
+
+    public function store()
+    {
+        // Get and validate input
+        $data = Input::all();
+        $rules = array(
+            'key' => array('required', 'integer'),
+            'pin' => array('required', 'integer'),
+            'ircName' => array('required', 'alpha_num'),
+            'spokenName' => array('required', 'alpha_num'),
+            'isAdmin' => array('required', 'integer'),
+            'isActive' => array('required', 'integer'),
+
+        );
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            return Redirect::to('/admin/user/create')->withErrors($validator);
+        }
+
+
+
+
+
+
+
+
+
+        /*
+
         $this->ext_conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         $params = $data;
         $create_user = $this->ext_conn->prepare("INSERT INTO users (key,
@@ -68,6 +97,7 @@ class UserController extends BaseController {
         } else {
             return array('status' => 'failure', 'reason' => 'create_user_failed','ErrorInfo' => $create_user->errorInfo());
         }
+        */
     }
 
     public function UpdateUser($data)

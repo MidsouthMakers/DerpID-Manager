@@ -28,8 +28,9 @@ Route::filter('adminAuth', function()
 });
 
 Route::group(['before' => 'adminAuth'], function() {
-    Route::resource('admin/user/add', 'admin\UserController@add');
-    Route::resource('admin/user', 'admin\UserController');
+    Route::group(['prefix' => 'admin'], function() {
+        Route::resource('user', 'admin\UserController');
+    });
     Route::resource('admin', 'admin\AdminController');
 
 });

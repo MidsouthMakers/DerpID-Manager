@@ -15,4 +15,9 @@ class AdminController extends BaseController {
         return View::make('admin/admin');
     }
 
+    public function create()
+    {
+        return View::make('hello');
+    }
+
 }

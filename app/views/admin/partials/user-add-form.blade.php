@@ -47,12 +47,12 @@ if($errors->first('spokenName'))
 {{ Form::text('spokenName', '') }}
 <br />
 {{ Form::label('isAdmin', 'Admin?') }}
-{{ Form::radio('isAdmin', '1') }} Yes
-{{ Form::radio('isAdmin', '0', true) }} No
+{{ Form::radio('isAdmin', 'true') }} Yes
+{{ Form::radio('isAdmin', 'false', true) }} No
 <br />
 {{ Form::label('isActive', 'Active?') }}
-{{ Form::radio('isActive', '1', true) }} Yes
-{{ Form::radio('isActive', '0') }} No
+{{ Form::radio('isActive', 'true', true) }} Yes
+{{ Form::radio('isActive', 'false') }} No
 <br />
 {{ Form::submit('Create User') }}
 {{ Form::close() }}

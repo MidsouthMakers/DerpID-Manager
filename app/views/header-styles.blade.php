@@ -19,7 +19,9 @@
         margin-left: -150px;
         margin-top: -150px;
     }
-
+    .error {
+        color: red;
+    }
     a, a:visited {
         color:#FF5949;
         text-decoration:none;

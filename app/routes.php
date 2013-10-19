@@ -85,7 +85,7 @@ Route::post('login', function()
     } else {
         //login failed
         echo 'Invalid Login';
-        return Redirect::to('login');
+        //return Redirect::to('login');
     }
 
 

@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->delete();
 
         User::create(array('key' => '123456',
-            'hash' => '$1$OSgsFlWE$79omYL8JCk0X0JLvREfjm1',
+            'hash' => '$1$0.642677$LhiG9enLL6YZ7XaYbg.aq1',
             'ircName' => 'MMRFIDadmin',
             'spokenName' => 'Admin',
             'addedBy' => '123456',
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder {
             'isActive' => '1'
             ));
         User::create(array('key' => '12345',
-            'hash' => '$1$OSgsFlWE$79omYL8JCk0X0JLvREfjm1',
+            'hash' => '$1$0.242015$ECSEBoROtylsLyvxciPZB.',
             'ircName' => 'MMRFIDuser',
             'spokenName' => 'User',
             'addedBy' => '123456',

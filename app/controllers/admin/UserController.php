@@ -6,6 +6,9 @@ use Input;
 use Validator;
 use Redirect;
 Use URL;
+use Session;
+use DateTime;
+use DerpAuthController;
 use BaseController;
 
 class UserController extends BaseController {
@@ -61,13 +64,22 @@ class UserController extends BaseController {
         if ($validator->fails()) {
             return Redirect::to(URL::action('admin\UserController@create'))->withErrors($validator);
         }
+        $date = new DateTime();
+        $hash = DerpAuthController::SecureThis($data['pin']);
+        $addedBy = Session::get('key');
+        $dateCreated = $date->getTimestamp();
+        $clean_key = DerpAuthController::CleanKey($data['key']);
+        $data = array(':key'=>$clean_key,
+            ':hash'=>$hash,
+            ':ircName'=>$data['ircName'],
+            ':spokenName'=>$data['spokenName'],
+            ':addedBy' =>$addedBy,
+            ':dateCreated' =>$dateCreated,
+            ':isAdmin'=>$data['isAdmin'],
+            ':isActive'=>$data['isActive']);
+        var_dump($data);
+
         echo 'Validated, need more functionality';
-
-
-
-
-
-
 
 
 

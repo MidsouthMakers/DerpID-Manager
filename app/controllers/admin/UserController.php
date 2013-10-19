@@ -9,6 +9,7 @@ Use URL;
 use Session;
 use DateTime;
 use DerpAuthController;
+use DB;
 use BaseController;
 
 class UserController extends BaseController {
@@ -69,15 +70,22 @@ class UserController extends BaseController {
         $addedBy = Session::get('key');
         $dateCreated = $date->getTimestamp();
         $clean_key = DerpAuthController::CleanKey($data['key']);
-        $data = array(':key'=>$clean_key,
-            ':hash'=>$hash,
-            ':ircName'=>$data['ircName'],
-            ':spokenName'=>$data['spokenName'],
-            ':addedBy' =>$addedBy,
-            ':dateCreated' =>$dateCreated,
-            ':isAdmin'=>$data['isAdmin'],
-            ':isActive'=>$data['isActive']);
+        $data = array('key'=>$clean_key,
+            'hash'=>$hash,
+            'ircName'=>$data['ircName'],
+            'spokenName'=>$data['spokenName'],
+            'addedBy' =>$addedBy,
+            'dateCreated' =>$dateCreated,
+            'lastLogin' =>$dateCreated,
+            'isAdmin'=>$data['isAdmin'],
+            'isActive'=>$data['isActive'],
+            'created_at' =>$dateCreated,
+            'updated_at' =>$dateCreated
+        );
         var_dump($data);
+
+        DB::table('users')->insert($data);
+
 
         echo 'Validated, need more functionality';
 

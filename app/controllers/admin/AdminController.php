@@ -1,6 +1,10 @@
 <?php
+namespace Admin;
 
-class AdminController extends BaseController {
+use View;
+use BaseController;
+
+class AdminController extends \BaseController {
 
     /*
      * Handle basic admin functionality

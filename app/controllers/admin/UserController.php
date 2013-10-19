@@ -15,6 +15,11 @@ class UserController extends BaseController {
         return View::make('admin/user');
     }
 
+    public function add()
+    {
+        return View::make('admin/user-add');
+    }
+
     public function CleanKey($key)
     {
         $int_key = intval($key);

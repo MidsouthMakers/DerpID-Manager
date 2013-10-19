@@ -14,7 +14,16 @@
 {{ Form::label('ircName', 'IRC Name: ') }}
 {{ Form::text('ircName', '') }}
 <br />
-<?php echo $errors->first('spokenName'); ?>
+<?php
+if($errors->first('spokenName'))
+{
+    ?>
+    <div class="error">
+    <?php echo $errors->first('spokenName'); ?>
+    </div>
+    <?php
+}
+?>
 {{ Form::label('spokenName', 'Spoken Name: ') }}
 {{ Form::text('spokenName', '') }}
 <br />

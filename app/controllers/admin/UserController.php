@@ -5,6 +5,7 @@ use View;
 use Input;
 use Validator;
 use Redirect;
+Use URL;
 use BaseController;
 
 class UserController extends BaseController {
@@ -58,8 +59,9 @@ class UserController extends BaseController {
         );
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            return Redirect::to('/admin/user/create')->withErrors($validator);
+            return Redirect::to(URL::action('admin\UserController@create'))->withErrors($validator);
         }
+
 
 
 

@@ -5,6 +5,24 @@ class DerpAuthController extends BaseController {
      * Handle user authentication
      */
 
+    public function SecureThis($pin)
+    {
+        $salt = '$1$' . substr(microtime(),0,8);
+        return crypt($pin, $salt);
+    }
+
+    public function CheckThis($pin,$salt)
+    {
+        $this_salt = '$1$' . $salt;
+        return crypt($pin,$this_salt);
+    }
+
+    public function ParseHash($hash)
+    {
+        $hash_parts = explode('$',$hash);
+        return $hash_parts;
+    }
+
     public function login()
     {
 

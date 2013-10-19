@@ -14,7 +14,7 @@
     <p>This is where we would CRUD users.</p>
     <ul
         <li>
-            <a href="/admin/user/add">Add User</a>
+            <a href="/admin/user/create">Create User</a>
         </li>
     </ul>
 

@@ -61,7 +61,7 @@ class UserController extends BaseController {
         if ($validator->fails()) {
             return Redirect::to(URL::action('admin\UserController@create'))->withErrors($validator);
         }
-
+        echo 'Validated, need more functionality';
 
 
 

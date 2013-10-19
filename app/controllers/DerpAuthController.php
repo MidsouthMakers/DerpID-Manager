@@ -58,9 +58,9 @@ class DerpAuthController extends BaseController {
         $supplied_hash = $supplied['3'];
 
         if($supplied_hash == $user_hash) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 
@@ -77,7 +77,7 @@ class DerpAuthController extends BaseController {
     {
         $key = Session::get('key');
         $user = User::getUserByKey($key);
-        if ($user && $user->isAdmin) {
+        if ($user->isAdmin) {
             return true;
         } else {
             return false;

@@ -13,43 +13,36 @@
 
 Route::get('/', function()
 {
-    return View::make('loginform');
+	return View::make('loginform');
 });
 Route::get('login', function()
 {
     return View::make('loginform');
 });
 
-Route::filter('Auth', function()
+Route::filter('adminAuth', function()
 {
-    if (DerpAuthController::isLoggedIn() != 1) {
+    if (DerpAuthController::isLoggedIn() != 1 || DerpAuthController::isAdmin() != 1) {
         return Redirect::to('login');
     }
 });
 
-Route::filter('AuthAdmin', function()
-{
-    if (DerpAuthController::isAdmin() != 1) {
-        return Redirect::to('login');
-    }
-});
-
-Route::group(['before' => 'Auth'], function() {
-
-    Route::resource('user', 'user\UserController');
-
-    Route::group(['before' => 'AuthAdmin'], function() {
-        Route::resource('admin', 'AdminController');
+Route::group(['before' => 'adminAuth'], function() {
+    Route::group(['prefix' => 'admin'], function() {
+        Route::resource('user', 'admin\UserController');
     });
+    Route::resource('admin', 'admin\AdminController');
+
 });
 
-//Route::get('user', function()
-//{
-//    if (DerpAuthController::isLoggedIn()) {
-//        return View::make('user');
-//    }
-//});
-
+/*
+Route::get('user', function()
+{
+    if (DerpAuthController::isLoggedIn()) {
+        return View::make('user');
+    }
+});
+*/
 Route::post('login', 'DerpAuthController@login');
 Route::get('logout', 'DerpAuthController@logout');
 

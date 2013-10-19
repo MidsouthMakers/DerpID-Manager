@@ -4,5 +4,4 @@
     <a href="/admin/">Admin Home</a> |
     <a href="/admin/add-user">Add User</a> |
     <a href="/admin/view-logs">View logs</a> |
-
 </div>

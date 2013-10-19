@@ -11,13 +11,13 @@ class DerpAuthController extends BaseController {
         return crypt($pin, $salt);
     }
 
-    public static  function CheckThis($pin,$salt)
+    public static function CheckThis($pin,$salt)
     {
         $this_salt = '$1$' . $salt;
         return crypt($pin,$this_salt);
     }
 
-    public static  function ParseHash($hash)
+    public static function ParseHash($hash)
     {
         $hash_parts = explode('$',$hash);
         return $hash_parts;
@@ -29,7 +29,7 @@ class DerpAuthController extends BaseController {
         return $clean_key;
     }
 
-    public static  function login()
+    public static function login()
     {
 
         // Get and validate input
@@ -72,7 +72,7 @@ class DerpAuthController extends BaseController {
         //return View::make('loginform');
     }
 
-    public function hashesMatch($user_hash, $supplied_pin)
+    public static function hashesMatch($user_hash, $supplied_pin)
     {
         $stored = explode('$',$user_hash);
         $salt = '$1$' . $stored['2'];

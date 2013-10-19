@@ -2,6 +2,6 @@
 
 <div class="admin_menu">
     <a href="/admin/">Admin Home</a> |
-    <a href="/admin/add-user">Add User</a> |
+    <a href="/admin/user">User Management</a> |
     <a href="/admin/view-logs">View logs</a> |
 </div>

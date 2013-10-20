@@ -40,7 +40,7 @@ class DerpAuthController extends BaseController {
         );
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            return Redirect::to('/');
+            return Redirect::to('login')->withInput()->withErrors($validator);
         }
 
         //Get user by specified key
@@ -67,12 +67,12 @@ class DerpAuthController extends BaseController {
                 }
             } else {
 
-                return Redirect::to('login');
+                return Redirect::to('login')->with('bad_pin', true)->withInput();
             }
 
-            return View::make('loginform');
+            return Redirect::to('login')->withInput();
         } else {
-            return View::make('loginform');
+            return Redirect::to('login')->with('bad_key', true)->withInput();
         }
     }
 

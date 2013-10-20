@@ -2,49 +2,21 @@
 'url' => 'admin/user',
 'method' => 'STORE'
 )) }}
-<?php
-if($errors->first('key'))
-{
-    ?>
-    <div class="error"><?php echo $errors->first('key'); ?></div>
-<?php
-}
-?>
+{{ $errors->first('key', '<span class="error">:message</span><br />') }}
 {{ Form::label('key', 'Key: ') }}
-{{ Form::text('key', '') }}
+{{ Form::text('key', Input::old('key')) }}
 <br />
-<?php
-if($errors->first('pin'))
-{
-    ?>
-    <div class="error"><?php echo $errors->first('pin'); ?></div>
-<?php
-}
-?>
+{{ $errors->first('pin', '<span class="error">:message</span><br />') }}
 {{ Form::label('pin', 'PIN: ') }}
 {{ Form::password('pin') }}
 <br />
-<?php
-if($errors->first('ircName'))
-{
-    ?>
-    <div class="error"><?php echo $errors->first('ircName'); ?></div>
-    <?php
-}
-?>
+{{ $errors->first('ircName', '<span class="error">:message</span><br />') }}
 {{ Form::label('ircName', 'IRC Name: ') }}
-{{ Form::text('ircName', '') }}
+{{ Form::text('ircName', Input::old('ircName')) }}
 <br />
-<?php
-if($errors->first('spokenName'))
-{
-    ?>
-    <div class="error"><?php echo $errors->first('spokenName'); ?></div>
-<?php
-}
-?>
+{{ $errors->first('spokenName', '<span class="error">:message</span><br />') }}
 {{ Form::label('spokenName', 'Spoken Name: ') }}
-{{ Form::text('spokenName', '') }}
+{{ Form::text('spokenName', Input::old('spokenName')) }}
 <br />
 {{ Form::label('isAdmin', 'Admin?') }}
 {{ Form::radio('isAdmin', 'true') }} Yes

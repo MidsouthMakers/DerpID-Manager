@@ -5,7 +5,31 @@ class DerpAuthController extends BaseController {
      * Handle user authentication
      */
 
-    public function login()
+    public static function SecureThis($pin)
+    {
+        $salt = '$1$' . substr(microtime(),0,8);
+        return crypt($pin, $salt);
+    }
+
+    public static function CheckThis($pin,$salt)
+    {
+        $this_salt = '$1$' . $salt;
+        return crypt($pin,$this_salt);
+    }
+
+    public static function ParseHash($hash)
+    {
+        $hash_parts = explode('$',$hash);
+        return $hash_parts;
+    }
+
+    public static function CleanKey($key){
+        $int_key = intval($key);
+        $clean_key = $int_key & 0x00FFFFFF;
+        return $clean_key;
+    }
+
+    public static function login()
     {
 
         // Get and validate input
@@ -48,7 +72,7 @@ class DerpAuthController extends BaseController {
         //return View::make('loginform');
     }
 
-    public function hashesMatch($user_hash, $supplied_pin)
+    public static function hashesMatch($user_hash, $supplied_pin)
     {
         $stored = explode('$',$user_hash);
         $salt = '$1$' . $stored['2'];

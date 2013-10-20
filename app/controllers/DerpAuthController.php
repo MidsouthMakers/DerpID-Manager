@@ -35,8 +35,8 @@ class DerpAuthController extends BaseController {
         // Get and validate input
         $data = Input::all();
         $rules = array(
-            'key' => 'integer',
-            'pin' => 'integer'
+            'key' => 'required|integer',
+            'pin' => 'required|integer'
         );
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
@@ -46,30 +46,34 @@ class DerpAuthController extends BaseController {
         //Get user by specified key
         $user = User::getUserByKey($data['key']);
 
-        //Find out whether hashes match
-        $hashes_match = DerpAuthController::hashesMatch($user->hash, $data['pin']);
+        if ($user) {
+            //Find out whether hashes match
+            $hashes_match = DerpAuthController::hashesMatch($user->hash, $data['pin']);
 
-        if($hashes_match){
+            if($hashes_match){
 
-            Session::put('logged_in', 1);
-            Session::put('ircName', $user->ircName);
-            Session::put('key', $user->key);
+                Session::put('logged_in', 1);
+                Session::put('ircName', $user->ircName);
+                Session::put('key', $user->key);
 
-            if($user->isAdmin){
+                if($user->isAdmin){
 
-                return Redirect::to('admin');
+                    return Redirect::to('admin');
 
-            } elseif(!$user->isAdmin){
+                } elseif(!$user->isAdmin){
 
-                return Redirect::to('user');
+                    return Redirect::to('user');
 
+                }
+            } else {
+
+                return Redirect::to('login');
             }
+
+            return View::make('loginform');
         } else {
-
-            return Redirect::to('login');
+            return View::make('loginform');
         }
-
-        //return View::make('loginform');
     }
 
     public static function hashesMatch($user_hash, $supplied_pin)

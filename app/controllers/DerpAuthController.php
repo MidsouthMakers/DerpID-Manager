@@ -72,7 +72,7 @@ class DerpAuthController extends BaseController {
 
             return View::make('loginform');
         } else {
-            return View::make('loginform');
+            return Redirect::to('login')->with('bad_key', true)->withInput();
         }
     }
 

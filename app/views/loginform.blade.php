@@ -11,6 +11,11 @@
 <div class="welcome">
     <h1>Welcome</h1>
     <p>please log in.</p>
+    @if (Session::has('bad_key'))
+        <div class="error">
+            Your key is incorrect.
+        </div>
+    @endif
     {{ Form::open(array('url' => 'login')) }}
         {{ Form::label('key', 'Key: ') }}
         {{ Form::text('key', '') }}

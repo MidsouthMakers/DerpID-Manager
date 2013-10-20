@@ -56,4 +56,9 @@ class DerpAuthControllerTest extends TestCase {
         $this->assertRedirectedTo('login');
     }
 
+    public function testHashesMatch()
+    {
+        // do stuff here
+    }
+
 }

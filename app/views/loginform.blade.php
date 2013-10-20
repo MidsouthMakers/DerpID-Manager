@@ -1,27 +1,25 @@
-<!-- app/views/form.blade.php -->
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DerpId-Manager</title>
-    @include('header-styles')
-</head>
-<body>
-@include('header-nav')
-<div class="welcome">
+@extends('layouts.master')
+
+@section('title')
+@parent
+:: Home
+@stop
+
+@section('content')
     <h1>Welcome</h1>
-    <p>please log in.</p>
+    <p>Please log in.</p>
     {{ Form::open(array('url' => 'login')) }}
+    <div>
         {{ Form::label('key', 'Key: ') }}
         {{ Form::text('key', '') }}
-    <br />
+    </div>
+    <div>
         {{ Form::label('pin', 'PIN: ') }}
         {{ Form::password('pin') }}
-    <br />
+    </div>
+    <div>
         {{ Form::submit('Log In') }}
+    </div>
     {{ Form::close() }}
-</div>
-@include('footer')
-</body>
-</html>
+@stop
 

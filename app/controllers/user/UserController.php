@@ -13,7 +13,17 @@ class UserController extends BaseController {
 
     public function index()
     {
-        return View::make('user');
+        return View::make('user/dashboard');
+    }
+
+    public function edit()
+    {
+        return View::make('user/edit');
+    }
+
+    public function update()
+    {
+        echo "update stuff";
     }
 
 }

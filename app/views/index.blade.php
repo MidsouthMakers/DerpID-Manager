@@ -10,13 +10,17 @@
     <h1>Welcome</h1>
     <p>please log in.</p>
     {{ Form::open(array('url' => 'login')) }}
-    {{ Form::label('key', 'Key: ') }}
-    {{ Form::text('key', '') }}
-    <br />
-    {{ Form::label('pin', 'PIN: ') }}
-    {{ Form::password('pin') }}
-    <br />
-    {{ Form::submit('Log In') }}
+    <div>
+        {{ Form::label('key', 'Key: ') }}
+        {{ Form::text('key', '') }}
+    </div>
+    <div>
+        {{ Form::label('pin', 'PIN: ') }}
+        {{ Form::password('pin') }}
+    </div>
+    <div>
+        {{ Form::submit('Log In') }}
+    </div>
     {{ Form::close() }}
 </div>
 @include('footer')

@@ -5,7 +5,6 @@ use View;
 use Input;
 use Validator;
 use Redirect;
-Use URL;
 use Session;
 use DateTime;
 use DerpAuthController;
@@ -60,7 +59,7 @@ class UserController extends BaseController {
         );
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            return Redirect::to(URL::action('admin\UserController@create'))->withErrors($validator);
+            return Redirect::to('admin/user/create')->withInput()->withErrors($validator);
         }
         $date = new DateTime();
         $hash = DerpAuthController::SecureThis($data['pin']);

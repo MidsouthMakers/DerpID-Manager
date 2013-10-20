@@ -57,9 +57,6 @@ class UserController extends BaseController {
             'pin' => array('required', 'integer'),
             'ircName' => array('required', 'alpha_num'),
             'spokenName' => array('required', 'alpha_num'),
-            'isAdmin' => array('required', 'integer'),
-            'isActive' => array('required', 'integer'),
-
         );
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {

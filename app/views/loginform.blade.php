@@ -16,10 +16,17 @@
             Your key is incorrect.
         </div>
     @endif
+    @if (Session::has('bad_pin'))
+    <div class="error">
+        Your pin is incorrect.
+    </div>
+    @endif
     {{ Form::open(array('url' => 'login')) }}
+        {{ $errors->first('key', '<span class="error">:message</span><br />') }}
         {{ Form::label('key', 'Key: ') }}
-        {{ Form::text('key', '') }}
+        {{ Form::text('key', Input::old('key')) }}
     <br />
+        {{ $errors->first('pin', '<span class="error">:message</span><br />') }}
         {{ Form::label('pin', 'PIN: ') }}
         {{ Form::password('pin') }}
     <br />

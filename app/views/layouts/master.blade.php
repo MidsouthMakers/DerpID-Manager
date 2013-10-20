@@ -9,9 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS are placed here -->
-    {{ HTML::style('css/bootstrap.css') }}
-    {{ HTML::style('css/bootstrap-responsive.css') }}
-    {{ HTML::style('css/bootstrap-theme.css') }}
+    {{ HTML::style('css/bootstrap.min.css') }}
+    {{ HTML::style('css/bootstrap-theme.min.css') }}
 
     <style>
         @section('styles')
